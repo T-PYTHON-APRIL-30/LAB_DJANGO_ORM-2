@@ -1,0 +1,15 @@
+{% extends 'main_app/index.html' %}
+
+{% block title %} {{blog.title}} {% endblock %}
+
+{% block content %}
+    <article class="blog-post">
+        <h2 class="blog-post-title mb-1">{{ blog.title }}</h2>
+        <p class="blog-post-meta">{{ blog.publish_date }}</p>
+        <a class="btn btn-sm btn-outline-warning" href="{% url 'main_app:update_page' blog.id %}">Update Blog</a>
+        <a class="btn btn-sm btn-outline-danger" href="{% url 'main_app:delete_page' blog.id %}">Delete Blog</a>
+        <hr>
+        <p>{{ blog.content }}</p>
+        <br>
+    </article>
+{% endblock %}
