@@ -1,0 +1,8 @@
+{%extends 'base.html'}
+{%bloock content%}
+<h1>Blog Posts</h1>
+<from method="got actions="{%url search_posts%}>
+    <inpiut type="text"name= "q"placeholder="search by title">
+        <button type= submit>search</button>
+    </form>
+    {%for post in posts%}
