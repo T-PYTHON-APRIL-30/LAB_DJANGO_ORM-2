@@ -1,0 +1,41 @@
+{% extends 'main_app/base.html' %}
+
+{% block title %}{% endblock%}
+
+
+{% block contentt%}
+<h1>update Blog</h1>
+<div class="container">
+
+    <form action="" method="POST">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">title</label>
+            <input  class="form-control" id="exampleFormControlInput1" placeholder="fill in title" name="title" value="{{blog.title}}">
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Description</label>
+            <textarea class="form-control" id="exampleFormControlInput1" placeholder="fill in blog" name="content">{{blog.content}}</textarea>
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Release Date</label>
+            <input type="date" name="publish_date" value="{{iso_date}}" />
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Is Published </label>
+            <select class="form-select" aria-label="Default select example" name="is_published">
+                <option value="True"{% if blog.is_published == Yes %} selected {% endif %}>Yes</option>
+                <option value="False"{% if blog.is_published == no %} selected {% endif %}>No</option>
+            </select>
+
+        <div class="mb-3">
+            <input type="submit" value="Create Blog" class="btn btn-primary" />
+        </div>
+
+    </form>
+
+</div>
+{% endblock %}
