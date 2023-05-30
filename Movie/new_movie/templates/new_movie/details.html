@@ -1,0 +1,20 @@
+{% extends 'new_movie/home.html'%}
+
+{% block page %}  Details Page {% endblock %}
+
+{% block process%}
+
+<div class="container">
+    <h1> {{movie_d.title}} </h1>
+    
+    <p> {{movie_d.content}} </p>
+
+    <p>is published? {{movie_d.is_published}} </p>
+
+    <p>publish date {{movie_d.publish_date}} </p>
+    <a class="btn btn-warning" style="width: 130PX;" type="button" href="{% url 'new_movie:update_page' movie_d.id %}"> Update</a>
+    <a class="btn btn-danger" style="width: 130PX;" type="button" href="{% url 'new_movie:delete_page' movie_d.id %}"> Delete</a>
+</div>
+   
+
+{% endblock %}
