@@ -64,3 +64,7 @@ def search_page(request: HttpRequest):
     blog = Blog.objects.filter(title__contains = search_phrase, is_published = True)
 
     return render(request, 'main_app/search.html', {"blog" : blog})
+
+
+def error_404(request, exception):
+    return render(request, 'main_app/404.html')
