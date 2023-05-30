@@ -1,0 +1,25 @@
+{% extends 'main_app/base.html' %}
+<!--  -->
+{% block title%}Detail Blog{%endblock%}
+<!--  -->
+{% block content %}
+<div class="container m-3">
+  <h1>Welcome to detial page</h1>
+</div>
+<div class="container">
+  <h1>{{blog.Title}}</h1>
+  <div>
+    <a
+      href="{% url 'main_app:update_blog' blog.id %}"
+      class="btn btn-secondary m-3"
+      >update post</a
+    >
+    <a href="{% url 'main_app:delete_blog' blog.id %}" class="btn btn-danger"
+      >Delete post</a
+    >
+  </div>
+  <p>{{blog.Content}}</p>
+</div>
+
+{% endblock %}
+<!-- <a href="{% url 'main_app:update_game' game.id %}" class="btn btn-warning">update game</a> -->
