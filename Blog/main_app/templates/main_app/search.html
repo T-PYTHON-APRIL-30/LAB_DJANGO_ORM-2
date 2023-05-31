@@ -8,9 +8,11 @@
 {% for post in posts %}
 
 <div style="text-align: center">
+    {% if  post.is_published %}
     <h1> {{ post.Title }}</h1>
     <div>{{post.publish_date}}</div>
     <a href="{% url 'main_app:post_details' post.id %}">Read more</a>
+    {% endif %}
 </div>
   
 {% endfor %}

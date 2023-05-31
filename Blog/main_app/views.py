@@ -5,7 +5,7 @@ from django.http import HttpRequest
 # Create your views here.
 
 def home(request):
-    posts = Post.objects.all()
+    posts = Post.objects.filter(is_published=True)
     return render(request, 'main_app/home.html', {'posts': posts})
 
 
@@ -51,5 +51,6 @@ def delete_post(request:HttpRequest, post_id):
 
 def search(request:HttpRequest):
     search_phrase = request.GET.get("search", "")
+
     post = Post.objects.filter(Title__contains=search_phrase)
     return render(request, "main_app/search.html", {"posts" : post})
