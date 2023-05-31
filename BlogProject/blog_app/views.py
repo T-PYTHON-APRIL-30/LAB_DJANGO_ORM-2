@@ -19,8 +19,8 @@ def add_blog(request:HttpRequest):
     return render(request,"blog_app/add_blog.html" )
 
 def read_blog(request:HttpRequest, blog_id):
-    blog = get_object_or_404(Blog, id=blog_id, is_published=True)
     try:
+        blog = get_object_or_404(Blog, id=blog_id, is_published=True)
         if not blog.content:
             raise Exception
         return render(request, 'blog_app/read.html', {'blog': blog})
