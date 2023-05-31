@@ -49,7 +49,7 @@ def delete_post(request:HttpRequest, post_id):
     return redirect("main_app:home")
 
 
-def search_page(request:HttpRequest):
+def search(request:HttpRequest):
     search_phrase = request.GET.get("search", "")
     post = Post.objects.filter(Title__contains=search_phrase)
     return render(request, "main_app/search.html", {"posts" : post})
