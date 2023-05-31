@@ -9,7 +9,7 @@ def add_post(request:HttpRequest):
     if request.method == "POST":
 
         new_post = Post(title=request.POST["title"], content=request.POST["content"],
-                         is_published=request.POST["is_published"], publish_date=request.POST["publish_date"])
+                         is_published=request.POST["is_published"], publish_date=request.POST["publish_date"], image=request.FILES["image"])
         new_post.save()
         return redirect("main_app:index_page")
 
@@ -48,6 +48,8 @@ def update_post(request:HttpRequest, post_id):
         post.content = request.POST["content"]
         post.is_published = request.POST["is_published"]
         post.publish_date = request.POST["publish_date"]
+        if "image" in request.FILES:
+            post.image = request.FILES["image"]
         post.save()
 
         return redirect("main_app:post_detail", post_id=post.id)
