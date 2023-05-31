@@ -21,7 +21,11 @@ def add_post(request:HttpRequest):
         return render(request, 'add_post.html')
 
 def post_details(request:HttpRequest, post_id):
-    post = Post.objects.get(id=post_id)
+    try:
+        post = Post.objects.get(id=post_id)
+    except:
+        return render(request, 'main_app/no_post.html')
+    
     return render(request, 'main_app/post_details.html', {"post" : post})
 
 
