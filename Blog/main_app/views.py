@@ -25,8 +25,7 @@ def post_details(request:HttpRequest, post_id):
         post = Post.objects.get(id=post_id)
     except:
         return render(request, 'main_app/no_post.html')
-    
-    return render(request, 'main_app/post_details.html', {"post" : post})
+    return render(request, 'main_app/post_details.html', {"post": post})
 
 
 def update_post(request:HttpRequest, post_id):
@@ -40,3 +39,9 @@ def update_post(request:HttpRequest, post_id):
         return redirect("main_app:post_details", post_id = post.id)
     else:
         return render(request, 'main_app/update_post.html', {"post" : post})
+    
+
+def delete_post(request:HttpRequest, post_id):
+    post = Post.objects.get(id=post_id)
+    post.delete()
+    return redirect("main_app:home")
