@@ -6,7 +6,7 @@ from django.http import HttpRequest
 
 def home(request):
     posts = Post.objects.all()
-    return render(request, 'home.html', {'posts': posts})
+    return render(request, 'main_app/home.html', {'posts': posts})
 
 def add_post(request:HttpRequest):
     if request.method == 'POST':
@@ -18,7 +18,7 @@ def add_post(request:HttpRequest):
         new_post.save()
         return redirect('main_app:home') 
     else: 
-        return render(request, 'add_post.html')
+        return render(request, 'main_app/add_post.html')
 
 def post_details(request:HttpRequest, post_id):
     try:

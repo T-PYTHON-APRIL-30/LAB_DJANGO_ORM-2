@@ -1,12 +1,10 @@
-{% extends 'base.html' %}
+{% extends 'main_app/base.html' %}
 
 {% block content %}
 
   <h1 style="text-align: center">Add Posts</h1>
   <form method="post" style="text-align: center">
     {% csrf_token %}
-
-
 
   <div>
       <label for="title">Title</label><br>
@@ -30,8 +28,6 @@
       <label for="birthdaytime">Date and Time:</label><br>
       <input type="date" name="publish_date">
   </div>
-
-
 
 <br>
     <button type="submit">Add post</button>
