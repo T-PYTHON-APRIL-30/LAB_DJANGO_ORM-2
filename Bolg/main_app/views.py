@@ -29,25 +29,30 @@ def post_page(request: HttpRequest):
 
 
 def detail_page(request: HttpRequest, blog_id):
-    blog = Blog.objects.get(id = blog_id)
+    try:
+        blog = Blog.objects.get(id = blog_id)
+    except:
+        return render(request, 'main_app/404.html')
 
     return render(request, 'main_app/detail.html', {"blog" : blog})
 
 
 def update_page(request: HttpRequest, blog_id):
-    blog = Blog.objects.get(id = blog_id)
-    #iso_date = blog.publish_date.isoformat()
+    try:
+        blog = Blog.objects.get(id = blog_id)
 
-    if request.method == "POST":
-        today = date.today()
+        if request.method == "POST":
+            today = date.today()
 
-        blog.title = request.POST["title"]
-        blog.content = request.POST["content"]
-        blog.is_published = request.POST["is_published"]
-        blog.publish_date = today
-        blog.save()
+            blog.title = request.POST["title"]
+            blog.content = request.POST["content"]
+            blog.is_published = request.POST["is_published"]
+            blog.publish_date = today
+            blog.save()
 
-        return redirect("main_app:home")
+            return redirect("main_app:home")
+    except:
+        return render(request, 'main_app/404.html')
 
     return render(request, 'main_app/update.html', {"blog" : blog})
 
