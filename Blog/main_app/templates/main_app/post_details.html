@@ -4,8 +4,9 @@
 
 {% block content %}
 <div style="text-align: center;">
-    <h1>{{post.Title}}</h1>
-    <p>details of the post content</p>
+    <h1>Detailes</h1>
+
+    <h2>{{post.Title}}</h2>
     <p>{{post.Content}}</p>
     <div>
         <a href="{% url 'main_app:update_post' post.id %}">Update post</a><br>

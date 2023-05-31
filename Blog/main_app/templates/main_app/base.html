@@ -11,6 +11,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
+    <br>
     <nav>
         <ul>
             <li><a href="/">Home</a></li>
@@ -18,6 +19,10 @@
            
         </ul>
     </nav>
+
+    <form action="{% url 'main_app:search' %}" method="GET" role="search">
+        <input type="search" name="search">
+    </form>
 
     <main>
         {% block content %}

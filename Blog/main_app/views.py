@@ -8,6 +8,7 @@ def home(request):
     posts = Post.objects.all()
     return render(request, 'main_app/home.html', {'posts': posts})
 
+
 def add_post(request:HttpRequest):
     if request.method == 'POST':
         title = request.POST['title']
@@ -19,6 +20,7 @@ def add_post(request:HttpRequest):
         return redirect('main_app:home') 
     else: 
         return render(request, 'main_app/add_post.html')
+
 
 def post_details(request:HttpRequest, post_id):
     try:
@@ -45,3 +47,9 @@ def delete_post(request:HttpRequest, post_id):
     post = Post.objects.get(id=post_id)
     post.delete()
     return redirect("main_app:home")
+
+
+def search_page(request:HttpRequest):
+    search_phrase = request.GET.get("search", "")
+    post = Post.objects.filter(Title__contains=search_phrase)
+    return render(request, "main_app/search.html", {"posts" : post})
