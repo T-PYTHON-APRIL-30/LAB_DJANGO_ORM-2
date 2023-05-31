@@ -51,6 +51,5 @@ def delete_post(request:HttpRequest, post_id):
 
 def search(request:HttpRequest):
     search_phrase = request.GET.get("search", "")
-
     post = Post.objects.filter(Title__contains=search_phrase)
     return render(request, "main_app/search.html", {"posts" : post})
