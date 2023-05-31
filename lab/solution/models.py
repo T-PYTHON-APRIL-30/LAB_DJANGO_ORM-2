@@ -5,7 +5,8 @@ from datetime import date
 class blog(models.Model):
     title = models.CharField(max_length=2048)
     context = models.TextField()
-    is_published = models.BooleanField()
+    image = models.ImageField(upload_to="images/",default="images/img1.jpg")
+    is_published = models.BooleanField(default=True)
     publish_date = models.DateField()
 
 

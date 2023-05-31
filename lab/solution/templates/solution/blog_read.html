@@ -4,11 +4,22 @@
 {% block title2 %}Blog Reading{% endblock %}
 
 {% block content %}
-<div class="container">
-    <h1>{{Blog.title}}</h1>
-    <a href="{% url 'solution:update_blog' Blog.id %}" class="btn btn-warning">Update Blog</a>
-    <a href="{% url 'solution:delete_blog' Blog.id %}" class="btn btn-danger">Delete Blog</a>
-    <p>{{Blog.context}}</p>
-</div>
+<div class="container row g-2">
+    <div class=" col-md-6">
+        <h1>{{Blog.title}}</h1>
+    </div>
+    <div class="col-md-6" style="padding-top: 1%;">
+        <a href="{% url 'solution:update_blog' Blog.id %}" class="btn btn-warning">Update Blog</a>
+        <a href="{% url 'solution:delete_blog' Blog.id %}" class="btn btn-danger">Delete Blog</a>
+        
+    </div>
+    <div class="col-12">
+        <img class="rounded-5" style="height: 90%; width: 90%; padding-left: 10%;" src="{{ Blog.image.url }}" />
+    </div>
+    <div class="col-12" style="text-align: center;">
+        <p>{{Blog.context}}</p>
+    </div>
+                
+    </div>
     
 {% endblock %}

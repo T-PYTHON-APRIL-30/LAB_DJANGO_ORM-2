@@ -16,7 +16,7 @@ def read_blog(request:HttpRequest, blog_id):
 def add_blog(request:HttpRequest):
 
     if request.method == "POST":
-        new_blog = blog(title=request.POST["title"], context=request.POST["context"], is_published=request.POST["is_published"], publish_date = request.POST["publish_date"] )
+        new_blog = blog(title=request.POST["title"], context=request.POST["context"], is_published=request.POST["is_published"], publish_date = request.POST["publish_date"], image = request.FILES["image"] )
         new_blog.save()
         return redirect("solution:index_page")
 
@@ -30,6 +30,9 @@ def blog_update(request:HttpRequest, blog_id):
         Blog.context = request.POST["context"]
         Blog.is_published = request.POST["is_published"]
         Blog.publish_date = request.POST["publish_date"]
+        if "image" in request.FILES:
+            Blog.image = request.FILES["image"]
+            
         Blog.save()
         return redirect("solution:read_blog", blog_id = Blog.id)
     
