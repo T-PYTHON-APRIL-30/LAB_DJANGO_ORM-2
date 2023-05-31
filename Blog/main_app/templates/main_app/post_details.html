@@ -1,0 +1,36 @@
+{% extends 'main_app/base.html' %}
+{% load static %}
+
+{%block title%}{{post.title}}{%endblock%}
+
+{% block content %}
+<div class="container">
+    <!-- Post preview-->
+    <div class="post-preview">
+            <div style ="display:flex; flex-direction:column;">
+                <h2 class="tm-pt-30 tm-color-primary tm-post-title">{{post.title}}</h2>
+            
+                <p class="tm-pt-30">
+                    {{post.content}}
+                </p>
+                <div class="d-flex justify-content-between tm-pt-45">
+                
+                <span class="tm-color-primary"> Published date: {{post.publish_date}} </span>
+                <div style="display:flex; flex-direction:row; row-gap:space-evenly;">
+        
+                </div>
+                <span> <a href="{% url 'main_app:updatePage' post.id %}" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">update post</a> </span>
+                <span> <a href="{% url 'main_app:deletePost' post.id %}" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">delete post</a> </span>
+            </div>
+
+    </div>
+    <br> <br>
+    
+<br> <br>
+</div>
+
+
+    
+</div>
+    
+{% endblock %}
