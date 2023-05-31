@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect
 from django.http import HttpRequest, HttpResponse
 from .models import Post
 
@@ -28,10 +28,11 @@ def not_found(request:HttpRequest):
 
 def post_detail(request:HttpRequest, post_id):
     try:
-        post = get_object_or_404(Post, id= post_id)
-        return render(request, "main_app/post_detail.html", {"post" : post}) 
-    except Post.DoesNotExist:
+        post = Post.objects.get(id= post_id)
+    except:
         return render(request, 'main_app/not_found.html')
+
+    return render(request, "main_app/post_detail.html", {"post" : post})
 
 
 def update_post(request:HttpRequest, post_id):
@@ -56,8 +57,9 @@ def delete_post(request:HttpRequest, post_id):
     
     post = Post.objects.get(id=post_id)
     post.delete()
-    return render(request, 'main_app/delete_done.html')
-    # return redirect("main_app:delete_done")
+    return redirect("main_app:delete_done")
+
+
 
 def delete(request:HttpRequest):
 
