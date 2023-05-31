@@ -1,0 +1,13 @@
+{%extends 'main_app/base.html'%}
+{%load static%}
+
+{% block title %} Posts search {% endblock%}
+
+{% block content%}
+<h1>Search results for <span>{{request.GET.search}}</span></h1>
+{% for blog in blogs %}
+    <h1> {{ post.title }}</h1>
+    <div>{{post.publish_date}}</div>
+    <a href="{% url 'main_app:home' post.id %}">Read More</a>
+{% endfor %}
+{% endblock %}
