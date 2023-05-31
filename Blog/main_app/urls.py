@@ -10,7 +10,6 @@ urlpatterns = [
     path('posts/update_post/<post_id>/',views.updatePage,name='updatePage'),
     path('search/',views.searchPage,name='searchPage'),
     path("posts/delete/<post_id>/", views.deletePost, name="deletePost"),
-    path('posts/details/<post_id>/not-found/',views.notFoundPage,name='notFoundPage'),
 ]
 
 

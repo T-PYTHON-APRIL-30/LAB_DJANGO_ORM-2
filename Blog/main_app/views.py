@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect
-from django.http import HttpRequest
+from django.http import HttpRequest, Http404
 from .models import Post
-import requests
 
 # Create your views here.
 
@@ -22,19 +21,13 @@ def postsPage(request):
 
 def detailsPage(request:HttpRequest,post_id):
     #الأفضل نحطها في تراي واكسبت لأن لو ما حصل الأيدي بيرجع ايرور
+    try:
+        post = Post.objects.get(id=post_id)
 
-    post = Post.objects.get(id = post_id)
-    return render(request,'main_app/post_details.html',{'post': post})
-
-    '''try:
-        response = requests.get(f'http://127.0.0.1:8000/posts/details/{post_id}/')
-
-        if response.status_code == 200:
-        post = Post.objects.get(id = post_id)
-        return render(request,'main_app/post_details.html',{'post': post})
+    except Post.DoesNotExist:
+        raise Http404("This post is doesn't exist!!")
     
-    except ValueError:
-        return redirect(("main_app:notFoundPage"))'''
+    return render(request, 'main_app/post_details.html', {"post" : post})
 
 def updatePage(request:HttpRequest,post_id):
 
@@ -66,7 +59,5 @@ def deletePost(request:HttpRequest, post_id):
 
     return redirect("main_app:homePage")
 
-def notFoundPage (request:HttpRequest, post_id):
-    post = Post.objects.get(id = post_id)    
-    return render (request,"main_app/notFound.html",{'post': post})
+
 
