@@ -12,7 +12,7 @@ def home_page(request:HttpRequest):
 def add_blog(request:HttpRequest):
     if request.method == "POST":
         #addin a new blog in database
-        new_blog = Blog(title=request.POST["title"], content=request.POST["content"], is_published=request.POST["is_published"], publish_date=request.POST["publish_date"])
+        new_blog = Blog(title=request.POST["title"], content=request.POST["content"], is_published=request.POST["is_published"], publish_date=request.POST["publish_date"], image=request.FILES["image"])
         new_blog.save()
         return redirect("blog_app:home_page")
 
@@ -21,10 +21,8 @@ def add_blog(request:HttpRequest):
 def read_blog(request:HttpRequest, blog_id):
     try:
         blog = get_object_or_404(Blog, id=blog_id, is_published=True)
-        if not blog.content:
-            raise Exception
         return render(request, 'blog_app/read.html', {'blog': blog})
-    except Exception:
+    except:
         return render(request, 'blog_app/no_blog.html')
 
 
@@ -44,6 +42,8 @@ def update_blog(request:HttpRequest,blog_id):
         blog.content = request.POST["content"]
         blog.is_published = request.POST["is_published"]
         blog.publish_date = request.POST["publish_date"]
+        if "image" in request.FILES : 
+            blog.image = request.FILES["image"]
         blog.save()
         return redirect("blog_app:read_blog", blog_id = blog.id)
 
