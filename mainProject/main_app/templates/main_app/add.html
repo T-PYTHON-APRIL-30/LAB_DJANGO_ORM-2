@@ -2,8 +2,9 @@
 {% block body %}
 <div class="container mt-3">
 
-    <form action="" method="POST">
+    <form action="" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
+          
         <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Title</label>
             <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="fill in title" name="title">
@@ -31,6 +32,10 @@
             <label for="exampleFormControlInput1" class="form-label">publish Date</label>
             <input type="date" name="publish_date" />
         </div>
+        <div class="mb-3">
+          <label for="exampleFormControlInput1" class="form-label">Choose Image</label>
+          <input type="file" name="image" class="form-control">
+      </div>
 
         <div class="mb-3">
             <input type="submit"   id="submit"value="Create blog" class="btn btn-primary" />

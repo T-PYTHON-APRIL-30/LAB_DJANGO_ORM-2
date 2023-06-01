@@ -25,14 +25,40 @@
       </ul>
       <form action="{% url 'main_app:home_page' %}" method="GET" class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
         <input type="search" name="search" class="form-control form-control-dark text-bg-dark" placeholder="Search..." aria-label="Search">
+        <div class="form-check mb-3">
+
     </form>
     </div>
   </nav>
 
   {% block body %}
-  {% if search_phrase == request.GET.search %}
+  
+  <form action="" method="GET" >
+
+    <div style="display: flex; justify-content: center; align-content: center; margin-top: 6px;">
+
+   
+  <div class="form-check mb-3 mr-2">
+    <input class="form-check-input" type="radio" name="is_published" id="exampleRadios2" value="0"{% if iblog.is_published == True %} checked {% endif %}>
+    <label class="form-check-label" for="exampleRadios2">
+      not published
+    </label>
+  </div>
+  <div class="form-check mb-3 mr-5">
+    <input class="form-check-input" type="radio" name="is_published" id="exampleRadios2" value="1"{% if iblog.is_published == True %} checked {% endif %}>
+    <label class="form-check-label" for="exampleRadios2">
+       published
+    </label>
+  </div>
+  <input type="submit"   id="submit"value="Apply" class="btn btn-primary mr-3" />
+</form>
+<a class="btn btn-primary mr-3" href="{% url 'main_app:home_page' %}"  >reset</a>
+</div>
+  {% if "search" in  request.GET %}
   <h3> Search results for <span class="text-success">{{request.GET.search}}</span> </h3>
+
   <p>click <a href="{% url 'main_app:home_page' %}">hare </a> to back</p>
+
   {% endif %}
 
 
@@ -45,8 +71,8 @@
       <strong class="d-inline-block mb-2 text-primary">{{blog.title}}</strong>
       <h3 class="mb-0">{{blog.title}}</h3>
       <div class="mb-1 text-muted">{{blog.publish_date}}</div>
-      
-      {% if  blog.is_published %}
+      <img src=" {{ blog.image.url }}"/>
+      {% if  blog.is_published == True %}
       <div class="mb-1 text-muted">is published : yes</div>
       <div class="row">
         <div class="col-3 mr-2">

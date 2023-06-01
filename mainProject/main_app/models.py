@@ -7,7 +7,8 @@ class blog(models.Model):
     Content=models.TextField()
     is_published= models.BooleanField()
     publish_date=models.DateField()
-    
+    image = models.ImageField(upload_to="images/",default="images/default.jpg")
+
     
 
 

@@ -7,24 +7,31 @@ from .models import blog
 def home_page(request:HttpRequest):
     
     #for searching
-    if request.GET.fromkeys("search"):
+    if "search" in request.GET:
         
-        search_phrase = request.GET.get("search", "")
+        search_phrase = request.GET["search"]
         iblogs=blog.objects.filter(title__contains=search_phrase,)
-       
         return render(request,"main_app/index.html",{"blogs" : iblogs ,"search_phrase":search_phrase})
     
+
+    if "is_published" in request.GET:
+            ispublished = request.GET["is_published"]
+            iblogs=blog.objects.filter(is_published=ispublished)
+            return render(request,"main_app/index.html",{"blogs" : iblogs })
+      
     blogs =blog.objects.all()
     return render(request,"main_app/index.html",{"blogs" : blogs})
+
+
+
+
 
 
 def add_page(request:HttpRequest):
     if request.method == "POST":
         
-        new_blog = blog(title=request.POST["title"], Content=request.POST["Content"],  is_published=request.POST["is_published"],publish_date=request.POST["publish_date"])
+        new_blog = blog(title=request.POST["title"], Content=request.POST["Content"],  is_published=request.POST["is_published"],publish_date=request.POST["publish_date"],image=request.FILES["image"])
         new_blog.save()
-       
-    
     return render(request,"main_app/add.html")
 
 def blog_detail(request:HttpRequest,blog_id):
@@ -45,6 +52,8 @@ def blog_update(request:HttpRequest,blog_id):
         iblog.Content=request.POST["Content"]
         iblog.is_published=request.POST["is_published"]
         iblog.publish_date=request.POST["publish_date"]
+        if "image" in request.FILES:
+            iblog.image=request.FILES["image"]
         iblog.save()
         return redirect("main_app:blog_detail",blog_id=iblog.id)
     return render(request,'main_app/update.html',{"iblog":iblog,"iso_date":iso_date})
