@@ -1,7 +1,6 @@
 from django.shortcuts import render,get_object_or_404, redirect
 from django.http import HttpRequest, HttpResponse
-from.models import post
-from models import PostForm
+from .models import post
 
 
 

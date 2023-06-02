@@ -1,0 +1,28 @@
+{% extends 'main_app/base.html' %}
+
+{% block title %}Blog Wibsite{% endblock %}
+
+{% block content %}
+<h1>Welcome to my blog site</h1>
+
+<h3>Search results for <span class="text-success">{{request.GET.search}}</span></h3>
+<div class="row">
+    {% for blog in blog_Site %}
+        <div class="col-4 g-3">
+            <div class="card" >
+                <!-- <img src="..." class="card-img-top" alt="..."> -->
+                <div class="card-body">
+                <h5 class="card-title"> {{ blog.title }}</h5>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col">rating: {{blog.rating}}</div>
+                        <div class="col">{{blog.release_date}}</div>
+                    </div>
+                </div>    
+                <a href="{% url 'main_app:blog_detail' blog.id %}" class="btn btn-primary">View More</a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
