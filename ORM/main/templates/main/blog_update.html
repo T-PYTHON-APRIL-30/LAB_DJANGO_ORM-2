@@ -1,5 +1,7 @@
 {% extends 'main/base.html' %}
 
+{% block title %} Add New blog {% endblock%}
+
 {% block body %}
 <div class="container mt-3">
 
@@ -7,30 +9,31 @@
         {% csrf_token %}
         <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Title</label>
-            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="fill in title" name="title">
+            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="fill in title" name="title" value="{{iblog.title}}">
         </div>
 
         <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">contant</label>
-            <textarea class="form-control" id="exampleFormControlInput1" placeholder="fill in Content" name="contant"></textarea>
+            <label for="exampleFormControlInput1" class="form-label">Contant</label>
+            <textarea class="form-control" id="exampleFormControlInput1" placeholder="fill in Content" name="contant">{{iblog.contant}}</textarea>
         </div>
         <label for="exampleFormControlInput1" class="form-label">is published</label>
         <div class="form-check">
-            <input class="form-check-input" type="radio" name="is_published" id="exampleRadios1" value="0">
+
+            <input class="form-check-input" type="radio" name="is_published" id="exampleRadios1" value="0" {% if iblog.is_published == False %} checked {% endif %}>
             <label class="form-check-label" for="exampleRadios1">
-              False
+              no
             </label>
           </div>
           <div class="form-check mb-3">
-            <input class="form-check-input" type="radio" name="is_published" id="exampleRadios2" value="1">
+            <input class="form-check-input" type="radio" name="is_published" id="exampleRadios2" value="1"{% if iblog.is_published == True %} checked {% endif %}>
             <label class="form-check-label" for="exampleRadios2">
-              True
+              yes
             </label>
           </div>
 
         <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">publish Date</label>
-            <input type="date" name="publish_date" />
+            <input type="date" name="publish_date" value="{{iso_date}}"/>
         </div>
 
         <div class="mb-3">
@@ -40,5 +43,4 @@
 
 
 </div>
-
 {% endblock %}

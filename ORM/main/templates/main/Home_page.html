@@ -8,6 +8,8 @@
                 <h3 class="mb-0">{{ blog.title }}</h3>
                 <p class="card-text mb-auto">{{blog.contant}}</p>
                 <div class="col">{{blog.publish_date}}</div>
+                <div><a href="{% url 'main:blog_detail' blog.id %}" class="btn btn-primary">View More</a></div>
+
             </div>
 
 

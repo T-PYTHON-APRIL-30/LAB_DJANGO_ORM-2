@@ -4,10 +4,11 @@
 
 {% block body %}
 <div class="container">
-    <h1>{{blog.title}}</h1>
-    <a href="{% url 'main:update_blog' blog.id %}" class="btn btn-warning">update game</a>
-    <a href="{% url 'main:delete_blog' blog.id %}" class="btn btn-danger">Delete game</a>
-    <p>{{blog.contant}}</p>
-</div>
+    <h1>{{iblog.title}}</h1> 
+    <br>
+    <p>{{iblog.contant}}</p>
+    <a href="{% url 'main:blog_update' iblog.id %}" class="btn btn-warning">update game</a>
+    <a href="{% url 'main:blog_delete' iblog.id %}" class="btn btn-danger">Delete game</a>
+
     
 {% endblock %}
