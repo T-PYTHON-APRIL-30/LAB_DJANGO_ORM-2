@@ -1,0 +1,54 @@
+{% extends 'main_app/base.html' %}
+
+{% block title %} Add New Game {% endblock%}
+
+
+{% block content%}
+<h1>Update blog_Site: {{blog.title}}</h1>
+<div class="container">
+
+    <form action="{% url 'main_app:update_bloge' blog.id %}" method="POST">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Title</label>
+            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="fill in title" name="title" value="{{game.title}}">
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Description</label>
+            <textarea class="form-control" id="exampleFormControlInput1" placeholder="fill in title" name="description">{{game.description}}</textarea>
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Rating</label>
+            <select class="form-select" aria-label="Default select example" name="rating">
+                <option value="1" {% if blog.rating == 1 %} selected {% endif %}>1</option>
+                <option value="2" {% if blog.rating == 2 %} selected {% endif %}>2</option>
+                <option value="3" {% if blog.rating == 3 %} selected {% endif %}>3</option>
+                <option value="4" {% if blog.rating == 4 %} selected {% endif %}>4</option>
+                <option value="5" {% if blog.rating == 5 %} selected {% endif %}>5</option>
+              </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Is Published</label>
+            <select class="form-select" aria-label="Default select example" name="is_published">
+                <option value="True"  {% if blog.is_published == True %} selected {% endif %}>Published</option>
+                <option value="False" {% if blog.is_published == False %} selected {% endif %}>Not Published</option>
+              </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Release Date</label>
+            <input type="date" name="release_date" value="{{iso_date}}" />
+        </div>
+
+        <div class="mb-3">
+            <input type="submit" value="Update Blog" class="btn btn-primary" />
+        </div>
+
+
+    </form>
+
+</div>
+{% endblock %}
