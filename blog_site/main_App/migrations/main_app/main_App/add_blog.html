@@ -11,7 +11,7 @@
         {% csrf_token %}
         <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Title</label>
-            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="fill in title" name="title">
+            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="fill in title" value="{{post.title}}" name="title">
         </div>
 
         <div class="mb-3">

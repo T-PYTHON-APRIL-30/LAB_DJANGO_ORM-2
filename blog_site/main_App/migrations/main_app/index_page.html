@@ -7,19 +7,19 @@
 
 <h3>Our Games</h3>
 <div class="row">
-    {% for blog in blog_Site %}
+    {% for post in post_Site %}
         <div class="col-4 g-3">
             <div class="card" >
                 <!-- <img src="..." class="card-img-top" alt="..."> -->
                 <div class="card-body">
-                <h5 class="card-title"> {{ game.title }}</h5>
+                <h5 class="card-title"> {{ post.title }}</h5>
                 <div class="card-body">
                     <div class="row">
-                        <div class="col">rating: {{blog.rating}}</div>
-                        <div class="col">{{blog.release_date}}</div>
+                        <div class="col">rating: {{post.rating}}</div>
+                        <div class="col">{{post.release_date}}</div>
                     </div>
                 </div>    
-                <a href="{% url 'main_app:blog_detail' blog.id %}" class="btn btn-primary">View More</a>
+                <a href="{% url 'main_app:post_detail' post.id %}" class="btn btn-primary">View More</a>
                 </div>
             </div>
         </div>
